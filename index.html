@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقع صحتي | منتجات العناية وجودة الحياة</title>
+    <!-- خطوط جوجل وفونت أوسم للأيقونات -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* اﻟﺘﻨﺴﻴﻘﺎﺕ اﻷﺳﺎﺳﻴﺔ */
+        :root {
+            --primary: #2d6a4f;
+            --primary-light: #52b788;
+            --accent: #d4af37;
+            --text-dark: #1b4332;
+            --text-light: #ffffff;
+            --bg-light: #f8f9fa;
+            --card-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* اﻟﻬﻴﺪر / اﻟﻨﺎﻓﺒﺎر */
+        header {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.03);
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            color: var(--primary-light);
+            animation: pulse 2s infinite;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-light);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-light);
+        }
+
+        /* اﻟﻮاﺟﻬﺔ اﻟﺮﺋﻴﺴﻴﺔ (Hero Section) */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #e8f5e9 0%, #ffffff 100%);
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(82,183,136,0.15) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .hero-content {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.3s;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1.3;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            color: #4a5d4e;
+            margin-bottom: 35px;
+            line-height: 1.8;
+            border-right: 4px solid var(--accent);
+            padding-right: 15px;
+        }
+
+        .hero-btns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            box-shadow: 0 10px 20px rgba(45,106,79,0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(45,106,79,0.3);
+        }
+
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+            box-shadow: 0 10px 20px rgba(37,211,102,0.2);
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(37,211,102,0.3);
+        }
+
+        .btn-arvea {
+            background-color: #fff;
+            color: var(--text-dark);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-arvea:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            position: relative;
+            opacity: 0;
+            animation: fadeIn 1.2s forwards 0.5s;
+        }
+
+        /* شكل هندسي جمالي خلف الصورة الزائفة */
+        .hero-image-bg {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(45deg, var(--primary-light), #d8f3dc);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            animation: morph 8s ease-in-out infinite alternate;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 80px;
+        }
+
+        /* قسم المنتجات */
+        .section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .section-title p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+
+        .product-img-holder {
+            height: 250px;
+            background: linear-gradient(135deg, #f1f5f2 0%, #e8f5e9 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            color: var(--primary-light);
+            position: relative;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent);
+            color: var(--text-dark);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .product-info {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-info h3 {
+            font-size: 20px;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .product-info p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        /* صفحة الانضمام لفريق أرفيا */
+        .join-section {
+            background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%);
+            color: white;
+            border-radius: 30px;
+            padding: 60px 40px;
+            margin: 60px auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .join-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .join-text h2 {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--primary-light);
+        }
+
+        .join-text p {
+            font-size: 18px;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        .join-form {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            padding: 35px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.9);
+            color: var(--text-dark);
+            font-size: 16px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 10px rgba(82,183,136,0.5);
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--accent);
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        .btn-submit:hover {
+            background: #fff;
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* صفحة الأسئلة الشائعة */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .faq-question {
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 700;
+            color: var(--text-dark);
+            user-select: none;
+        }
+
+        .faq-question i {
+            transition: var(--transition);
+            color: var(--primary);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: #fafbfc;
+        }
+
+        .faq-answer p {
+            padding: 20px 25px;
+            line-height: 1.7;
+            color: #555;
+            font-size: 15px;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+            color: var(--accent);
+        }
+
+        /* الفوتر (الذيل) */
+        footer {
+            background: #112a1e;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+
+        footer p {
+            opacity: 0.7;
+            font-size: 14px;
+        }
+
+        /* الأنيميشن والتأثيرات */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes morph {
+            0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+            100% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
+        }
+
+        /* التوافق مع الجوال */
+        @media (max-width: 768px) {
+            .hero-container, .join-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-content h1 { font-size: 34px; }
+            .hero-content p { border-right: none; padding-right: 0; }
+            .hero-btns { justify-content: center; }
+            .nav-links { display: none; } /* يمكن تطوير قائمة همبرغر لاحقاً */
+            .join-section { padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- الهيدر -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-heart-pulse"></i> صحتي
+            </a>
+            <ul class="nav-links">
+                <li><a href="#">الرئيسية</a></li>
+                <li><a href="#products">المنتجات</a></li>
+                <li><a href="#join">انضم إلينا</a></li>
+                <li><a href="#faq">الأسئلة الشائعة</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- الواجهة الرئيسية -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>عناية فائقة تليق بأسلوب حياتك</h1>
+                <p>منتجات مختارة للعناية اليومية وجودة الحياة. نهتم بصحتك وجمالك بأفضل الخيارات الطبيعية والموثوقة.</p>
+                <div class="hero-btns">
+                    <a href="#products" class="btn btn-primary"><i class="fa-solid fa-basket-shopping"></i> تصفح المنتجات</a>
+                    <a href="https://wa.me/966543062286?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D9%8A%D8%8C%20%D8%A3%D9%85%D9%88%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D9%85%D9%86%D8%AA%D8%AC%D8%A7%D8%AA%20%D9%85%D9%88%D9%82%D8%B9%20%D8%B5%D8%AD%D8%AA%D9%8A." target="_blank" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> تواصل واتساب</a>
+                    <a href="#join" class="btn btn-arvea"><i class="fa-solid fa-users"></i> انضم لفريق أرفيا</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-image-bg">
+                    <i class="fa-solid fa-spa"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم المنتجات -->
+    <section class="section" id="products">
+        <div class="section-title">
+            <h2>منتجاتنا المميزة</h2>
+            <p>اكتشف مجموعتنا الحصرية للعناية اليومية</p>
+        </div>
+        
+        <div class="products-grid">
+            <!-- المنتج 1 -->
+            <div class="product-card">
+                <div class="product-img-holder">
+                    <i class="fa-solid fa-pump-soap"></i>
+                    <span class="product-badge">الأكثر مبيعاً</span>
+                </div>
+                <div class="product-info">
+                    <h3>كريم العناية المكثفة</h3>
+                    <p>تركيبة طبيعية غنية بالزيوت الأساسية لترطيب البشرة وحمايتها طوال اليوم.</p>
+                    <button class="btn btn-whatsapp order-btn" data-product="كريم العناية المكثفة"><i class="fa-brands fa-whatsapp"></i> طلب عبر واتساب</button>
+                </div>
+            </div>
+
+            <!-- المنتج 2 -->
+            <div class="product-card">
+                <div class="product-img-holder">
+                    <i class="fa-solid fa-jar"></i>
+                    <span class="product-badge">طبيعي 100%</span>
+                </div>
+                <div class="product-info">
+                    <h3>مقشر البشرة الطبيعي</h3>
+                    <p>يعمل على تجديد خلايا البشرة بلطف وإعادة النضارة والإشراق الطبيعي لها.</p>
+                    <button class="btn btn-whatsapp order-btn" data-product="مقشر البشرة الطبيعي"><i class="fa-brands fa-whatsapp"></i> طلب عبر واتساب</button>
+                </div>
+            </div>
+
+            <!-- المنتج 3 -->
+            <div class="product-card">
+                <div class="product-img-holder">
+                    <i class="fa-solid fa-spray-can"></i>
+                </div>
+                <div class="product-info">
+                    <h3>بخاخ النضارة الفورية</h3>
+                    <p>رذاذ منعش غني بالفيتامينات يعيد الحيوية لبشرتك المتعبة في أي وقت.</p>
+                    <button class="btn btn-whatsapp order-btn" data-product="بخاخ النضارة الفورية"><i class="fa-brands fa-whatsapp"></i> طلب عبر واتساب</button>
+                </div>
+            </div>
+
+            <!-- المنتج 4 -->
+            <div class="product-card">
+                <div class="product-img-holder">
+                    <i class="fa-solid fa-bottle-droplet"></i>
+                    <span class="product-badge">جديد</span>
+                </div>
+                <div class="product-info">
+                    <h3>سيروم جودة الحياة</h3>
+                    <p>مستخلص زيتي نقي ومغذٍ بعمق، يساعد على محاربة علامات الإجهاد اليومي.</p>
+                    <button class="btn btn-whatsapp order-btn" data-product="سيروم جودة الحياة"><i class="fa-brands fa-whatsapp"></i> طلب عبر واتساب</button>
+                </div>
+            </div>
+
+            <!-- المنتج 5 -->
+            <div class="product-card">
+                <div class="product-img-holder">
+                    <i class="fa-solid fa-hand-holding-droplet"></i>
+                </div>
+                <div class="product-info">
+                    <h3>بلسم الترطيب العميق</h3>
+                    <p>حماية مثالية لليدين والجسم ضد الجفاف، سريع الامتصاص برائحة عطرية هادئة.</p>
+                    <button class="btn btn-whatsapp order-btn" data-product="بلسم الترطيب العميق"><i class="fa-brands fa-whatsapp"></i> طلب عبر واتساب</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- صفحة الانضمام -->
+    <section class="section" id="join">
+        <div class="join-section">
+            <div class="join-container">
+                <div class="join-text">
+                    <h2>هل ترغب في الانضمام إلى فريق أرفيا والعمل من المنزل؟</h2>
+                    <p>ابدأ رحلتك الاستثمارية اليوم مع فريق متميز، واحصل على تدريب مستمر ودعم متكامل لتحقيق أهدافك المالية من أي مكان.</p>
+                </div>
+                <div class="join-form">
+                    <form id="arveaForm">
+                        <div class="form-group">
+                            <label for="name">الاسم الكامل</label>
+                            <input type="text" id="name" required placeholder="أدخل اسمك الكريم">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">رقم الجوال (واتساب)</label>
+                            <input type="tel" id="phone" required placeholder="05xxxxxxxx">
+                        </div>
+                        <div class="form-group">
+                            <label for="city">المدينة</label>
+                            <input type="text" id="city" required placeholder="مثال: الرياض، جدة">
+                        </div>
+                        <button type="submit" class="btn btn-submit">إرسال الطلب عبر واتساب <i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- صفحة الأسئلة الشائعة -->
+    <section class="section" id="faq">
+        <div class="section-title">
+            <h2>الأسئلة الشائعة</h2>
+            <p>كل ما تود معرفته عن خدماتنا ومنتجاتنا</p>
+        </div>
+
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>كيف أطلب؟</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>الأمر بسيط جداً! اضغط على زر "طلب عبر واتساب" الموجود أسفل المنتج الذي تريده، وسيتم تحويلك مباشرة للمحادثة لإتمام الطلب وتحديد التوصيل.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>كيف أنضم لفريق أرفيا؟</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>قم بملء استمارة الانضمام في أسفل الموقع بالاسم، رقم الجوال، والمدينة، ثم اضغط إرسال وسيتم التواصل معك لشرح كافة التفاصيل.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>متى يتم التواصل معي بعد تقديم الطلب؟</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>فريق الدعم لدينا نشط وجاهز، ويتم التواصل معك فوراً أو خلال ساعات قليلة كحد أقصى من إرسال رسالتك.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>هل يوجد تدريب للمنضمين الجدد؟</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>نعم بكل تأكيد! نوفر تدريباً مجانياً شاملاً خطوة بخطوة للتعرف على المنتجات وطرق التسويق والعمل باحترافية من المنزل.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer>
+        <p>جميع الحقوق محفوظة © موقع صحتي 2026</p>
+    </footer>
+
+    <!-- الجافا سكريبت لتفاعلية الموقع -->
+    <script>
+        const whatsappNumber = "+966543062286";
+
+        // تأثير الأكورديون للأسئلة الشائعة
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+
+        // تشغيل طلبات المنتجات وإرسالها للواتساب ديناميكياً
+        document.querySelectorAll('.order-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const productName = e.target.getAttribute('data-product');
+                const message = `السلام عليكم، أود الاستفسار وطلب منتج: (${productName}) من موقع صحتي.`;
+                const encodedMessage = encodeURIComponent(message);
+                window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
+            });
+        });
+
+        // إرسال بيانات نموذج الانضمام عبر الواتساب
+        document.getElementById('arveaForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const city = document.getElementById('city').value;
+
+            const message = `السلام عليكم، أرغب في الانضمام إلى فريق أرفيا والعمل من المنزل.\n\nبياناتي:\n- الاسم: ${name}\n- الجوال: ${phone}\n- المدينة: ${city}`;
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
+        });
+    </script>
+</body>
+</html>
