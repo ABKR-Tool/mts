@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>بنتي تالين - مارينا مول</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Tajawal:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Tajawal',sans-serif;background:#fffafc;color:#3a3a3a;overflow-x:hidden}
+    h1,h2,h3{font-family:'Cairo',sans-serif;font-weight:700}
+    .container{max-width:480px;margin:0 auto;padding:0 20px}
+    .hero{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:linear-gradient(135deg,#fff0f3 0%,#fff 50%,#fdf2f5 100%)}
+    .hero-bg{position:absolute;width:300px;height:300px;border-radius:50%;opacity:.06;background:#d4af37;animation:float 8s ease-in-out infinite}
+    .hero-bg:nth-child(1){top:-50px;left:-50px}
+    .hero-bg:nth-child(2){bottom:-80px;right:-80px;width:400px;height:400px;animation-delay:2s}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-30px)}}
+    .hero-content{z-index:1;padding:20px}
+    .hero-img{width:240px;height:240px;border-radius:50%;object-fit:cover;border:4px solid rgba(212,175,55,.2);margin-bottom:24px}
+    .hero h1{font-size:2.2em;color:#2c2c2c;letter-spacing:1px;line-height:1.4;margin-bottom:12px}
+    .hero h1 span{color:#d4af37;font-weight:300}
+    .hero p{color:#6b6b6b;font-size:1em;margin-bottom:28px;line-height:1.6}
+    .btns{display:flex;flex-direction:column;gap:10px;align-items:center}
+    .btn{display:inline-block;padding:14px 32px;border-radius:50px;text-decoration:none;font-family:'Cairo',sans-serif;font-weight:600;font-size:.95em;transition:all .3s;width:80%}
+    .btn-outline{border:1.5px solid #d4af37;color:#2c2c2c;background:transparent}
+    .btn-outline:hover{background:rgba(212,175,55,.08)}
+    .btn-whatsapp{background:#25D366;color:#fff;border:none;position:relative;overflow:hidden;box-shadow:0 4px 20px rgba(37,211,102,.3)}
+    .btn-whatsapp::after{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:linear-gradient(45deg,transparent,rgba(255,255,255,.2),transparent);transform:rotate(45deg);animation:shimmer 3s infinite}
+    @keyframes shimmer{0%{transform:translateX(-100%) rotate(45deg)}100%{transform:translateX(100%) rotate(45deg)}}
+    .btn-location{background:#fff;border:1px solid #e0e0e0;color:#3a3a3a;font-size:.85em}
+    .section{padding:60px 0}
+    .section-title{text-align:center;font-size:1.8em;color:#2c2c2c;margin-bottom:8px}
+    .section-subtitle{text-align:center;color:#888;margin-bottom:32px;font-size:.95em}
+    .cats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .cat-card{position:relative;border-radius:16px;overflow:hidden;height:160px;cursor:pointer}
+    .cat-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+    .cat-card:hover img{transform:scale(1.08)}
+    .cat-card .overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.5),transparent);display:flex;align-items:flex-end;padding:12px}
+    .cat-card .overlay span{color:#fff;font-family:'Cairo',sans-serif;font-weight:600;font-size:1em}
+    .season{background:rgba(255,240,243,.5);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(212,175,55,.15);border-radius:24px;padding:32px 20px;text-align:center;margin:0 10px}
+    .season img{width:100%;border-radius:16px;margin-bottom:16px;max-height:300px;object-fit:cover}
+    .gallery{columns:2;column-gap:8px}
+    .gallery img{width:100%;border-radius:12px;margin-bottom:8px;cursor:pointer;transition:transform .3s,box-shadow .3s}
+    .gallery img:hover{transform:scale(1.02);box-shadow:0 8px 25px rgba(0,0,0,.1)}
+    .lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9999;justify-content:center;align-items:center}
+    .lightbox.active{display:flex}
+    .lightbox img{max-width:90%;max-height:85vh;border-radius:12px}
+    .lightbox-close{position:absolute;top:20px;right:20px;color:#fff;font-size:2em;cursor:pointer;z-index:10}
+    .why-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .why-card{text-align:center;padding:24px 16px;background:#fff;border-radius:16px;border:1px solid #f5e6e8;transition:all .3s}
+    .why-card:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,.06)}
+    .why-icon{font-size:2em;margin-bottom:8px}
+    .testimonials{display:flex;gap:12px;overflow-x:auto;padding:0 10px 20px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+    .testimonial{min-width:280px;scroll-snap-align:start;background:#fff;border-radius:16px;padding:20px;border:1px solid #f5e6e8;flex-shrink:0}
+    .testimonial .stars{color:#d4af37}
+    .testimonial .name{font-weight:700;margin-top:8px}
+    .faq-item{border-bottom:1px solid #f0e0e3;padding:16px 0;cursor:pointer}
+    .faq-q{font-family:'Cairo',sans-serif;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+    .faq-a{max-height:0;overflow:hidden;transition:max-height .4s,padding .4s;color:#666;font-size:.9em;line-height:1.6}
+    .faq-item.open .faq-a{max-height:200px;padding-top:10px}
+    .faq-item.open .faq-q::after{transform:rotate(180deg)}
+    .faq-q::after{content:'▾';font-size:1.2em;transition:transform .3s;color:#d4af37}
+    .map-frame{width:100%;height:250px;border:none;border-radius:16px;margin-top:16px}
+    .float-wa{position:fixed;bottom:20px;right:20px;z-index:999;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(37,211,102,.4);text-decoration:none;animation:pulse 2s infinite}
+    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 0 0 18px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+    .float-wa svg{width:28px;height:28px;fill:#fff}
+    footer{background:#2c2c2c;color:#bbb;text-align:center;padding:32px 20px;margin-top:40px}
+    footer a{color:#d4af37;text-decoration:none;margin:0 8px}
+    @media(min-width:768px){.container{max-width:700px}.cats{grid-template-columns:repeat(4,1fr)}.why-cards{grid-template-columns:repeat(4,1fr)}}
+  </style>
+  </head><body>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <img src="https://images.unsplash.com/photo-1518831959646-742e2e3b2b4b?w=400" alt="فساتين بنات" class="hero-img">
+    <h1>أناقة صغيرة<span>... بتفاصيل كبيرة</span></h1>
+    <p>تشكيلة مميزة من فساتين البنات للمناسبات والأفراح والأعياد بأحدث الموديلات داخل مارينا مول</p>
+    <div class="btns">
+      <a href="#gallery" class="btn btn-outline">مشاهدة التشكيلة</a>
+      <a href="https://wa.me/966543062286?text=السلام%20عليكم%2C%20أرغب%20بالاستفسار%20عن%20فساتين%20بنتي%20تالين" class="btn btn-whatsapp">💬 تواصل عبر واتساب</a>
+      <a href="#location" class="btn btn-location">📍 موقع المحل في مارينا مول</a>
+    </div>
+  </div>
+</section>
+
+<section class="section container" id="categories">
+  <h2 class="section-title">تشكيلاتنا</h2>
+  <p class="section-subtitle">اختاري ما يناسب مناسبتك</p>
+  <div class="cats" id="cats-container"></div>
+</section>
+
+<section class="section container" id="season">
+  <div class="season">
+    <h2 class="section-title">تشكيلة الموسم الجديد</h2>
+    <p class="section-subtitle">أحدث التصاميم المختارة بعناية لتناسب مختلف المناسبات والأعمار</p>
+    <img id="season-img" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=600" alt="تشكيلة الموسم">
+    <a href="#gallery" class="btn btn-outline" style="margin-top:12px">عرض الصور</a>
+  </div>
+</section>
+
+<section class="section container" id="gallery">
+  <h2 class="section-title">معرض الصور</h2>
+  <p class="section-subtitle">أجمل الموديلات لمناسباتك الخاصة</p>
+  <div class="gallery" id="gallery-container"></div>
+</section>
+
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close" onclick="document.getElementById('lightbox').classList.remove('active')">✕</span>
+  <img id="lightbox-img" src="" alt="صورة مكبرة">
+</div>
+
+<section class="section container" id="why-us">
+  <h2 class="section-title">لماذا بنتي تالين؟</h2>
+  <div class="why-cards">
+    <div class="why-card"><div class="why-icon">✨</div><h3>موديلات متجددة</h3><p style="font-size:.85em;color:#888">باستمرار</p></div>
+    <div class="why-card"><div class="why-icon">🧵</div><h3>خامات عالية</h3><p style="font-size:.85em;color:#888">الجودة</p></div>
+    <div class="why-card"><div class="why-icon">💎</div><h3>أسعار مناسبة</h3><p style="font-size:.85em;color:#888">للجميع</p></div>
+    <div class="why-card"><div class="why-icon">📍</div><h3>موقع مميز</h3><p style="font-size:.85em;color:#888">مارينا مول</p></div>
+  </div>
+</section>
+
+<section class="section container" id="testimonials">
+  <h2 class="section-title">آراء العملاء</h2>
+  <div class="testimonials" id="testimonials-container"></div>
+</section>
+
+<section class="section container" id="faq">
+  <h2 class="section-title">الأسئلة الشائعة</h2>
+  <div id="faq-container">
+    <div class="faq-item"><div class="faq-q">هل تتوفر مقاسات مختلفة؟</div><div class="faq-a">نعم، نوفر جميع المقاسات من عمر سنة وحتى 14 سنة.</div></div>
+    <div class="faq-item"><div class="faq-q">هل تصل موديلات جديدة باستمرار؟</div><div class="faq-a">نعم، نستقبل تشكيلات جديدة أسبوعياً لمواكبة أحدث الصيحات.</div></div>
+    <div class="faq-item"><div class="faq-q">كيف يمكن التواصل مع المحل؟</div><div class="faq-a">يمكنك التواصل عبر واتساب على 966543062286 أو زيارتنا في مارينا مول.</div></div>
+    <div class="faq-item"><div class="faq-q">أين يقع المحل؟</div><div class="faq-a">يقع محل بنتي تالين داخل مارينا مول، بوابة رقم 2.</div></div>
+  </div>
+</section>
+
+<section class="section container" id="location">
+  <h2 class="section-title">موقع المحل</h2>
+  <iframe class="map-frame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3622.3!2d46.7!3d24.7!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z!5e0!3m2!1sar!2ssa!4v1" allowfullscreen loading="lazy"></iframe>
+  <div style="text-align:center;margin-top:16px">
+    <a href="https://maps.google.com/?q=مارينا+مول" class="btn btn-outline">🗺️ الاتجاه إلى المحل</a>
+  </div>
+</section>
+
+<a href="https://wa.me/966543062286?text=السلام%20عليكم%2C%20أرغب%20بالاستفسار%20عن%20فساتين%20بنتي%20تالين" class="float-wa" target="_blank">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+</a>
+
+<footer>
+  <p style="font-family:'Cairo',sans-serif;font-size:1.2em;color:#d4af37;margin-bottom:4px">بنتي تالين</p>
+  <p style="font-size:.85em">مارينا مول</p>
+  <p style="margin-top:12px">
+    <a href="https://wa.me/966543062286">💬 واتساب</a>
+    <a href="#">📷 إنستغرام</a>
+    <a href="https://maps.google.com/?q=مارينا+مول">📍 الموقع</a>
+  </p>
+  <p style="font-size:.75em;margin-top:12px">ساعات العمل: ٩ صباحاً - ١١ مساءً</p>
+</footer><script>
+const images=[
+  "https://images.unsplash.com/photo-1518831959646-742e2e3b2b4b?w=400",
+  "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400",
+  "https://images.unsplash.com/photo-1503944583220-79d8926ad5e2?w=400",
+  "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400",
+  "https://images.unsplash.com/photo-1621786030484-4c855eed6974?w=300",
+  "https://images.unsplash.com/photo-1604671801908-6f0c6a092c05?w=500",
+  "https://images.unsplash.com/photo-1612335225048-cfffdccb43c8?w=350",
+  "https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=300",
+  "https://images.unsplash.com/photo-1566174058851-62df3da6b65b?w=450",
+  "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=400",
+  "https://images.unsplash.com/photo-1519238425857-d6922ed0ae81?w=300",
+  "https://images.unsplash.com/photo-1551024507-7ea3ece1b3c5?w=500"
+];
+const catsData=[
+  {title:"فساتين المناسبات",img:images[0]},
+  {title:"فساتين الأفراح",img:images[3]},
+  {title:"فساتين الأعياد",img:images[5]},
+  {title:"أحدث الموديلات",img:images[7]}
+];
+const testimonialsData=[
+  {name:"أم خالد",text:"فستان بنتي كان روعه، خياطه نظيفه وقماش ممتاز.",stars:5},
+  {name:"نورة",text:"تعامل راقي جداً، والبضاعه تجنن. برجع أطلب منهم.",stars:5},
+  {name:"ريم",text:"أجمل فساتين أطفال شفتها في مارينا مول. أنصح وبقوه.",stars:5}
+];
+
+const catsContainer=document.getElementById('cats-container');
+catsData.forEach(cat=>{
+  catsContainer.innerHTML+=`<div class="cat-card"><img src="${cat.img}" alt="${cat.title}"><div class="overlay"><span>${cat.title}</span></div></div>`;
+});
+
+const gallery=document.getElementById('gallery-container');
+images.forEach(img=>{
+  const el=document.createElement('img');
+  el.src=img;el.alt='فساتين بنتي تالين';el.loading='lazy';
+  el.onclick=()=>{
+    document.getElementById('lightbox-img').src=img;
+    document.getElementById('lightbox').classList.add('active');
+  };
+  gallery.appendChild(el);
+});
+
+const testContainer=document.getElementById('testimonials-container');
+testimonialsData.forEach(t=>{
+  testContainer.innerHTML+=`<div class="testimonial"><div class="stars">${'★'.repeat(t.stars)}</div><p>"${t.text}"</p><p class="name">- ${t.name}</p></div>`;
+});
+
+document.getElementById('lightbox').addEventListener('click',function(e){
+  if(e.target===this) this.classList.remove('active');
+});
+
+document.querySelectorAll('.faq-item').forEach(item=>{
+  item.addEventListener('click',()=>{item.classList.toggle('open')});
+});
+</script>
+</body>
+                                                                                                                                                                </html>
