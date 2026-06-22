@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>بنتي تالين - مارينا مول</title>
   <meta name="description" content="بنتي تالين - فساتين بنات للمناسبات والأفراح والأعياد بأحدث الموديلات داخل مارينا مول">
-<meta name="keywords" content="فساتين بنات, فساتين أطفال, مارينا مول, فساتين مناسبات, فساتين أفراح, بنتي تالين">
+  <meta name="keywords" content="فساتين بنات, فساتين أطفال, مارينا مول, فساتين مناسبات, فساتين أفراح, بنتي تالين">
   <meta name="robots" content="index, follow">
   <meta name="google-site-verification" content="lUsUaXvhwTaXGi9Wd3X__CQlvK1p0lwbRxoM_U6P05c" />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Tajawal:wght@300;400;500&display=swap" rel="stylesheet">
@@ -73,7 +73,8 @@
     footer a{color:#d4af37;text-decoration:none;margin:0 8px}
     @media(min-width:768px){.container{max-width:700px}.cats{grid-template-columns:repeat(4,1fr)}.why-cards{grid-template-columns:repeat(4,1fr)}}
   </style>
-  </head><body>
+</head>
+<body>
 
 <section class="hero">
   <div class="hero-bg"></div>
@@ -100,7 +101,7 @@
   <div class="season">
     <h2 class="section-title">تشكيلة الموسم الجديد</h2>
     <p class="section-subtitle">أحدث التصاميم المختارة بعناية لتناسب مختلف المناسبات والأعمار</p>
-    <img id="season-img" src="https://i.ibb.co/SwrLVqvf/IMG-20260620-WA0425.jpg", alt="تشكيلة الموسم">
+    <img id="season-img" src="https://i.ibb.co/SwrLVqvf/IMG-20260620-WA0425.jpg" alt="تشكيلة الموسم">
     <a href="#gallery" class="btn btn-outline" style="margin-top:12px">عرض الصور</a>
   </div>
 </section>
@@ -161,31 +162,39 @@
     <a href="#">📷 إنستغرام</a>
     <a href="https://maps.google.com/?q=مارينا+مول">📍 الموقع</a>
   </p>
-  <p style="font-size:.75em;margin-top:12px">ساعات العمل: ٩ صباحاً - ١١ مساءًالموقع تحت التطوير</p>
-</footer><script>
-  // === المعرض الديناميكي (يقرأ من مجلد data/gallery) ===
+  <p style="font-size:.75em;margin-top:12px">ساعات العمل: ٩ صباحاً - ١١ مساءً</p>
+</footer>
+
+<script>
+// ============= الإعدادات =============
 const GITHUB_REPO = 'ABKR-Tool/-';
 const GALLERY_FOLDER = 'data/gallery';
+const TESTIMONIALS_FOLDER = 'data/testimonials';
+const FAQ_FOLDER = 'data/faq';
 
+// ============= المعرض الديناميكي =============
 async function fetchGallery() {
+  const galleryContainer = document.getElementById('gallery-container');
+  if (!galleryContainer) return;
   try {
     const response = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${GALLERY_FOLDER}`);
     const files = await response.json();
-    const galleryContainer = document.getElementById('gallery-container');
-    galleryContainer.innerHTML = ''; // تنظيف المعرض
+    galleryContainer.innerHTML = '';
+
+    const imageUrls = []; // لتغذية التصنيفات لاحقاً
 
     for (const file of files) {
       if (file.name.endsWith('.md')) {
         const mdResponse = await fetch(file.download_url);
         const mdText = await mdResponse.text();
         
-        // استخراج رابط الصورة ووصفها من ملف Markdown
         const imageMatch = mdText.match(/image:\s*(.+)/);
-        const altMatch = mdText.match(/alt:\s*(.+)/);
+        const altMatch = mdText.match(/alt:\s*"?(.+?)"?\s*$/m);
         
         if (imageMatch) {
           const imgUrl = imageMatch[1].trim();
           const altText = altMatch ? altMatch[1].trim() : 'فساتين بنتي تالين';
+          imageUrls.push(imgUrl);
           
           const el = document.createElement('img');
           el.src = imgUrl;
@@ -199,54 +208,126 @@ async function fetchGallery() {
         }
       }
     }
+    // بناء التصنيفات من الصور المتاحة
+    buildCategories(imageUrls);
   } catch (error) {
     console.error('خطأ في تحميل المعرض:', error);
+    galleryContainer.innerHTML = '<p style="text-align:center;color:#888;">تعذر تحميل المعرض حالياً. تأكد من وجود صور مرفوعة في لوحة التحكم.</p>';
   }
 }
 
-// استدعاء الدالة عند تحميل الصفحة
-fetchGallery();
-];
-const catsData=[
-  {title:"فساتين المناسبات",img:images[0]},
-  {title:"فساتين الأفراح",img:images[3]},
-  {title:"فساتين الأعياد",img:images[5]},
-  {title:"أحدث الموديلات",img:images[7]}
-];
-const testimonialsData=[
-  {name:"أم خالد",text:"فستان بنتي كان روعه، خياطه نظيفه وقماش ممتاز.",stars:5},
-  {name:"نورة",text:"تعامل راقي جداً، والبضاعه تجنن. برجع أطلب منهم.",stars:5},
-  {name:"ريم",text:"أجمل فساتين أطفال شفتها في مارينا مول. أنصح وبقوه.",stars:5}
-];
+// ============= التصنيفات (مبنية من أول 4 صور في المعرض) =============
+function buildCategories(imageUrls) {
+  const catsContainer = document.getElementById('cats-container');
+  if (!catsContainer || imageUrls.length === 0) return;
+  
+  const catTitles = ["فساتين المناسبات", "فساتين الأفراح", "فساتين الأعياد", "أحدث الموديلات"];
+  const selectedImages = imageUrls.slice(0, 4);
+  
+  catsContainer.innerHTML = '';
+  selectedImages.forEach((img, index) => {
+    catsContainer.innerHTML += `<div class="cat-card"><img src="${img}" alt="${catTitles[index]}"><div class="overlay"><span>${catTitles[index]}</span></div></div>`;
+  });
+  
+  // إذا نقصت الصور، استخدم صوراً افتراضية
+  if (selectedImages.length < 4) {
+    const defaults = [
+      "https://images.unsplash.com/photo-1518831959646-742e2e3b2b4b?w=400",
+      "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400",
+      "https://images.unsplash.com/photo-1604671801908-6f0c6a092c05?w=500",
+      "https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=300"
+    ];
+    for (let i = selectedImages.length; i < 4; i++) {
+      catsContainer.innerHTML += `<div class="cat-card"><img src="${defaults[i]}" alt="${catTitles[i]}"><div class="overlay"><span>${catTitles[i]}</span></div></div>`;
+    }
+  }
+}
 
-const catsContainer=document.getElementById('cats-container');
-catsData.forEach(cat=>{
-  catsContainer.innerHTML+=`<div class="cat-card"><img src="${cat.img}" alt="${cat.title}"><div class="overlay"><span>${cat.title}</span></div></div>`;
-});
+// ============= آراء العملاء الديناميكية =============
+async function fetchTestimonials() {
+  const container = document.getElementById('testimonials-container');
+  if (!container) return;
+  try {
+    const response = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${TESTIMONIALS_FOLDER}`);
+    const files = await response.json();
+    container.innerHTML = '';
 
-const gallery=document.getElementById('gallery-container');
-images.forEach(img=>{
-  const el=document.createElement('img');
-  el.src=img;el.alt='فساتين بنتي تالين';el.loading='lazy';
-  el.onclick=()=>{
-    document.getElementById('lightbox-img').src=img;
-    document.getElementById('lightbox').classList.add('active');
-  };
-  gallery.appendChild(el);
-});
+    for (const file of files) {
+      if (file.name.endsWith('.md')) {
+        const mdResponse = await fetch(file.download_url);
+        const mdText = await mdResponse.text();
+        
+        const nameMatch = mdText.match(/name:\s*(.+)/);
+        const textMatch = mdText.match(/text:\s*"?(.+?)"?\s*$/m);
+        const starsMatch = mdText.match(/stars:\s*(\d+)/);
+        
+        const name = nameMatch ? nameMatch[1].trim() : 'عميل';
+        const text = textMatch ? textMatch[1].trim() : 'تعامل رائع';
+        const stars = starsMatch ? parseInt(starsMatch[1]) : 5;
+        
+        container.innerHTML += `<div class="testimonial"><div class="stars">${'★'.repeat(stars)}</div><p>"${text}"</p><p class="name">- ${name}</p></div>`;
+      }
+    }
+    
+    if (container.innerHTML === '') {
+      container.innerHTML = '<p style="text-align:center;color:#888;">لا توجد تقييمات بعد. كوني الأولى!</p>';
+    }
+  } catch (error) {
+    console.error('خطأ في تحميل التقييمات:', error);
+    container.innerHTML = '<p style="text-align:center;color:#888;">تعذر تحميل التقييمات حالياً.</p>';
+  }
+}
 
-const testContainer=document.getElementById('testimonials-container');
-testimonialsData.forEach(t=>{
-  testContainer.innerHTML+=`<div class="testimonial"><div class="stars">${'★'.repeat(t.stars)}</div><p>"${t.text}"</p><p class="name">- ${t.name}</p></div>`;
-});
+// ============= الأسئلة الشائعة الديناميكية =============
+async function fetchFAQ() {
+  const container = document.getElementById('faq-container');
+  if (!container) return;
+  try {
+    const response = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${FAQ_FOLDER}`);
+    const files = await response.json();
+    
+    if (!files || files.length === 0) return; // حافظ على الأسئلة الافتراضية
 
+    container.innerHTML = '';
+
+    for (const file of files) {
+      if (file.name.endsWith('.md')) {
+        const mdResponse = await fetch(file.download_url);
+        const mdText = await mdResponse.text();
+        
+        const qMatch = mdText.match(/question:\s*"?(.+?)"?\s*$/m);
+        const aMatch = mdText.match(/answer:\s*"?(.+?)"?\s*$/m);
+        
+        const question = qMatch ? qMatch[1].trim() : 'سؤال';
+        const answer = aMatch ? aMatch[1].trim() : 'إجابة';
+        
+        container.innerHTML += `<div class="faq-item"><div class="faq-q">${question}</div><div class="faq-a">${answer}</div></div>`;
+      }
+    }
+    
+    // إعادة ربط الأحداث
+    document.querySelectorAll('.faq-item').forEach(item=>{
+      item.addEventListener('click',()=>{item.classList.toggle('open')});
+    });
+  } catch (error) {
+    console.error('خطأ في تحميل الأسئلة:', error);
+  }
+}
+
+// ============= الأحداث العامة =============
 document.getElementById('lightbox').addEventListener('click',function(e){
   if(e.target===this) this.classList.remove('active');
 });
 
+// الأسئلة الافتراضية
 document.querySelectorAll('.faq-item').forEach(item=>{
   item.addEventListener('click',()=>{item.classList.toggle('open')});
 });
+
+// ============= بدء التشغيل =============
+fetchGallery();
+fetchTestimonials();
+fetchFAQ();
 </script>
 </body>
-                                                                                                                                                                </html>
+                            </html>
