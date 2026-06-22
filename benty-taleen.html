@@ -194,9 +194,10 @@ async function fetchGallery() {
         if (imageMatch) {
           let imgUrl = imageMatch[1].trim();
 // إذا الرابط ما يبدأ بـ http، فهو اسم ملف مرفوع في Netlify
-if (!imgUrl.startsWith('http')) {
-  imgUrl = 'https://raw.githubusercontent.com/ABKR-Tool/-/main/images/' + imgUrl;
-}
+  if (!imgUrl.startsWith('http')) {
+  // GitHub حساس لحالة الأحرف، لذا نحول الرابط لأحرف صغيرة
+  imgUrl = 'https://raw.githubusercontent.com/ABKR-Tool/-/main/images/' + imgUrl.toLowerCase();
+  }
           const altText = altMatch ? altMatch[1].trim() : 'فساتين بنتي تالين';
           imageUrls.push(imgUrl);
           
