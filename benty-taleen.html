@@ -195,7 +195,7 @@ async function fetchGallery() {
           let imgUrl = imageMatch[1].trim();
 // إذا الرابط ما يبدأ بـ http، فهو اسم ملف مرفوع في Netlify
 if (!imgUrl.startsWith('http')) {
-  imgUrl = 'https://comfy-duckanoo-c07b37.netlify.app/images/' + imgUrl;
+  imgUrl = 'https://raw.githubusercontent.com/ABKR-Tool/-/main/images/' + imgUrl;
 }
           const altText = altMatch ? altMatch[1].trim() : 'فساتين بنتي تالين';
           imageUrls.push(imgUrl);
