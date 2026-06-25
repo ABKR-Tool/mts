@@ -13,21 +13,21 @@ const dressImages = [
         title: "فستان العيد التركي بنقوش الورد",
         price: "380 ر.س",
         category: "eid",
-        src: "https://images.unsplash.com/photo-1621112904887-419379ce6824?q=80&w=600"
+        src: "https://h.top4top.io/p_3826laxaq1.jpg"
     },
     {
         id: 3,
         title: "فستان تول ناعم كلاسيكي خلفي",
         price: "290 ر.س",
         category: "soft",
-        src: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=600"
+        src: "https://k.top4top.io/p_3826gcsaq1.jpg "
     },
     {
         id: 4,
         title: "فستان السهرة الملكي المنفوش",
         price: "520 ر.س",
         category: "wedding",
-        src: "https://images.unsplash.com/photo-1545558014-8692077e9b5c?q=80&w=600"
+        src: "https://github.com/ABKR-Tool/mts/blob/d9826b6996094cd84c50a72c11fac91504e80c6d/IMG-20260623-WA0017.jpg"
     },
     {
         id: 5,
