@@ -6,7 +6,7 @@ const dressImages = [
         title: "فستان الأميرات المطرز الفاخر",
         price: "450 ر.س",
         category: "wedding",
-        src: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?q=80&w=600"
+        src: "https://github.com/ABKR-Tool/mts/blob/d9826b6996094cd84c50a72c11fac91504e80c6d/IMG-20260623-WA0017.jpg"
     },
     {
         id: 2,
