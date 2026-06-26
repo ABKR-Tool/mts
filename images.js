@@ -43,4 +43,18 @@ const dressImages = [
         category: "soft",
         src: "https://a.top4top.io/p_3829ii99p1.jpg"
     }
+    {
+        id: 7,
+        title: "فستان الأميرات ",
+        price: "450 ر.س",
+        category: "wedding",
+        src: "https://e.top4top.io/p_38295d5wq1.jpg"
+    },
+    {
+        id: 1,
+        title: "فستان الأميرات المطرز الفاخر",
+        price: "450 ر.س",
+        category: "wedding",
+        src: "https://j.top4top.io/p_38267vpy11.jpg "
+    },
 ];
