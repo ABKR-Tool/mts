@@ -27,20 +27,20 @@ const dressImages = [
         title: "فستان السهرة الملكي المنفوش",
         price: "520 ر.س",
         category: "wedding",
-        src: "https://github.com/ABKR-Tool/mts/blob/d9826b6996094cd84c50a72c11fac91504e80c6d/IMG-20260623-WA0017.jpg"
+        src: "https://b.top4top.io/p_382987i611.jpg"
     },
     {
         id: 5,
         title: "فستان أورجانزا بطبقات أنيقة",
         price: "340 ر.س",
         category: "eid",
-        src: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?q=80&w=600"
+        src: "https://k.top4top.io/p_3829ica871.jpg"
     },
     {
         id: 6,
         title: "فستان دانتيل ريفي ناعم",
         price: "260 ر.س",
         category: "soft",
-        src: "https://images.unsplash.com/photo-1621112904887-419379ce6824?q=80&w=600"
+        src: "https://a.top4top.io/p_3829ii99p1.jpg"
     }
 ];
