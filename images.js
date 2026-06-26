@@ -50,4 +50,25 @@ const dressImages = [
         category: "wedding",
         src: "https://e.top4top.io/p_38295d5wq1.jpg"
     },
+   {
+    id: 8,
+    title: "فستان",
+    price: "200ر.س",
+    category: "wedding",
+    src: "https://g.top4top.io/p_38299bolk1.jpg"
+},
+{
+    id: 9,
+    title: "فستان",
+    price: "200ر.س",
+    category: "wedding",
+    src: "https://d.top4top.io/p_3829qwqqs1.jpg"
+},
+{
+    id: 10,
+    title: "فستان",
+    price: "200ر.س",
+    category: "wedding",
+    src: "https://c.top4top.io/p_38299g9aq1.jpg"
+},
 ];
