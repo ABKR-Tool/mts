@@ -3,15 +3,15 @@
 const dressImages = [
     {
         id: 1,
-        title: "فستان الأميرات المطرز الفاخر",
-        price: "450 ر.س",
+        title: "فستان الأميرات ",
+        price: "350 ر.س",
         category: "wedding",
         src: "https://j.top4top.io/p_38267vpy11.jpg"
     },
     {
         id: 2,
         title: "فستان العيد التركي بنقوش الورد",
-        price: "380 ر.س",
+        price: "350 ر.س",
         category: "eid",
         src: "https://h.top4top.io/p_3826laxaq1.jpg"
     },
@@ -31,22 +31,22 @@ const dressImages = [
     },
     {
         id: 5,
-        title: "فستان أورجانزا بطبقات أنيقة",
+        title: "فستان",
         price: "340 ر.س",
         category: "eid",
         src: "https://k.top4top.io/p_3829ica871.jpg"
     },
     {
         id: 6,
-        title: "فستان دانتيل ريفي ناعم",
+        title: "فستان اورجانزا",
         price: "260 ر.س",
         category: "soft",
         src: "https://a.top4top.io/p_3829ii99p1.jpg"
     },
     {
         id: 7,
-        title: "فستان الأميرات ",
-        price: "450 ر.س",
+        title: "فستان بربطات خلفية",
+        price: "200ر.س",
         category: "wedding",
         src: "https://e.top4top.io/p_38295d5wq1.jpg"
     },
