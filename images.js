@@ -76,7 +76,7 @@ const dressImages = [
     title: "فستان زفاف بقصة أطفال أنيقة",
     price: "280ر.س",
     category: "wedding",
-    src: "https://c.top4top.io/p_38299g9aq1.jpg"
-    }'
+    src: "https://c.top4top.io/p_38299g9aq1.jpg"    
+}'
 
 ];
