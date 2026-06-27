@@ -42,33 +42,41 @@ const dressImages = [
         price: "260 ر.س",
         category: "soft",
         src: "https://a.top4top.io/p_3829ii99p1.jpg"
-    },
-    {
+     },
+     {
         id: 7,
         title: "فستان بربطات خلفية",
         price: "200ر.س",
         category: "wedding",
         src: "https://e.top4top.io/p_38295d5wq1.jpg"
-    },
-   {
+     },
+    {
+    id: 7,
+    title: "فستان دانتيل ناعم بربطات خلفية",
+    price: "350ر.س",
+    category: "wedding",
+    src: "https://e.top4top.io/p_38295d5wq1.jpg"
+},
+  {
     id: 8,
-    title: "فستان",
-    price: "200ر.س",
+    title: "فستان ملكي بقصة كلاسيك",
+    price: "420ر.س",
     category: "wedding",
     src: "https://g.top4top.io/p_38299bolk1.jpg"
 },
 {
     id: 9,
-    title: "فستان",
-    price: "200ر.س",
+    title: "فستان أميري بتطريزات لؤلؤية",
+    price: "480ر.س",
     category: "wedding",
     src: "https://d.top4top.io/p_3829qwqqs1.jpg"
 },
 {
     id: 10,
-    title: "فستان",
-    price: "200ر.س",
+    title: "فستان زفاف بقصة أطفال أنيقة",
+    price: "280ر.س",
     category: "wedding",
     src: "https://c.top4top.io/p_38299g9aq1.jpg"
-},
+    }'
+
 ];
